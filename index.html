@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-type="place" data-radius="soft" data-buttons="arrow" data-page-mode="short" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Linden Street Barbers: barbershop on Linden Street</title>
+<meta name="description" content="Haircuts, beard trims and hot-towel shaves from €18, Tuesday to Saturday. Pick a free time online and the chair is held.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linden Street Barbers: barbershop on Linden Street">
+<meta property="og:description" content="Haircuts, beard trims and hot-towel shaves, booked online.">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f4efe5">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="place">
+<meta name="page-kind" content="place">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #f4efe5; --p-surface: #e7dfcf; --p-ink: #29251e; --p-muted: #675e51;
+  --p-accent: #8c6418; --p-accent-ink: #ffffff; --p-action: #8c6418; --p-action-ink: #ffffff;
+  --p-inv-bg: #29251e; --p-inv-surface: #35312a; --p-inv-ink: #f4efe5; --p-inv-muted: #a09b92;
+  --p-inv-accent: #f4efe5; --p-inv-accent-ink: #29251e; --p-inv-action: #f4efe5; --p-inv-action-ink: #29251e;
+  --font-display: "Work Sans", system-ui, sans-serif;
+  --font-text: "Work Sans", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.025em;
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+<style>
+  /* page CSS: the price list beside its photograph, the booking's time grid and summary */
+  #shop .pl-photo { margin: 0; }
+  #shop .pl-photo > img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+  .rows__dur { display: block; color: var(--muted); }
+  .book { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-5); row-gap: var(--s-7); margin-top: var(--s-7); align-items: start; }
+  .head-row { margin-bottom: var(--s-7); align-items: start; }
+  .head-row p { padding-top: 14px; }
+  .head-row p { margin: 0; }
+  .ground-brand .footer__col h3, .ground-brand .footer__legal, .ground-brand .footer__legal a { color: var(--ink); }
+  .book__form { grid-column: 1 / span 6; align-content: start; row-gap: var(--s-5); }
+  .book__sum { grid-column: 7 / span 6; align-self: start; display: grid; gap: var(--s-4); padding-left: 0; }
+  .book__form .field select { width: 100%; }
+  .slots { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .slots legend { padding: 0; margin-bottom: var(--s-2); font-size: var(--t-small); font-weight: 500; }
+  .slots__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s-2); }
+  .slots__note { margin: 0; color: var(--ink); grid-column: 1 / -1; }
+  .slot { position: relative; }
+  .slot input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .slot span { display: grid; place-items: center; height: 44px; border: 1px solid var(--line-strong); background: var(--bg); font-variant-numeric: tabular-nums; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s; }
+  .slot input:hover + span { border-color: var(--ink); }
+  .slot input:checked + span { background: var(--action); border-color: var(--action); color: var(--action-ink); }
+  .slot input:focus-visible + span { outline: 2px solid var(--action); outline-offset: 2px; }
+  .slot input:disabled + span { color: var(--muted); text-decoration: line-through; border-style: dashed; cursor: not-allowed; }
+  .sum__list { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-3) var(--s-5); }
+  .sum__list dt { color: var(--muted); }
+  .sum__list dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .sum__total { padding-top: var(--s-4); border-top: 1px solid var(--line-strong); display: flex; justify-content: space-between; font-size: var(--t-card); }
+  @media (max-width: 1023px) { .book__form { grid-column: 1 / -1; } .book__sum { grid-column: 1 / -1; } }
+  @media (max-width: 639px) { .slots__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #shop { --h: 2; }
+    #shop .grid > .pl-photo { grid-column: 1 / -1; order: -1; }
+    #shop .visit__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  #book { --h: 1; }
+  @media (max-width: 1023px) { #book { --h: 2; } }
+</style>
+</head>
+<body>
+<!-- type: place (a barbershop people walk into), the short page: two stand-in photographs in one black-and-white grade
+     deal: nav split (nav-cards dealt, no photographs left for its panel: re-dealt), footer columns, rhythm colour-band
+     (the close on the ochre brand ground), buttons arrow, mark stack; palette limewash-ochre (the warm cream of a
+     barber's towels and the ochre of old brass fittings), type work-sans.
+     not used on the short page: the place's composition (wall), the type moment (name), the rooms layout (side).
+     moments: picture-develops on the price list's photograph (#shop) -->
+<header class="nav nav--split">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#prices">Prices</a></div>
+      <div class="nav__item"><a class="nav__link" href="#visit">Visit</a></div>
+      <div class="nav__item"><a class="nav__link" href="#book">Booking</a></div>
+    </nav>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="stack" aria-hidden="true"></span>Linden Street Barbers</a>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="#book">Book a chair</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--place" data-enter aria-labelledby="hero-h">
+    <img class="hero__bg" src="assets/img/photo-f101285686-1280.jpg" srcset="assets/img/photo-f101285686-500.jpg 500w, assets/img/photo-f101285686-960.jpg 960w, assets/img/photo-f101285686-1280.jpg 1280w" sizes="(max-width: 639px) 188vw, 100vw" width="1280" height="853" alt="Two barber chairs facing a long mirror and counter on a checkered floor" fetchpriority="high" decoding="async" data-phone-fill data-source="stand-in" data-subject="the shop's two chairs" style="--ly-pos: 50% 100%; --ly-pos-phone: 30% 100%">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__text">
+        <h1 id="hero-h">Barbershop on Linden Street</h1>
+        <p class="hero__lead">Cuts, beard trims and hot-towel shaves, Tuesday to Saturday, 10:00 to 19:00.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="#book">Book a chair<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="shop" aria-labelledby="shop-h" style="--h: 1; --hm: 2">
+    <div class="wrap">
+      <div class="grid grid--top head-row">
+        <h2 class="span-6" id="shop-h">Prices and opening hours</h2>
+        <p class="span-6 start-7">All prices in euros, tax included, paid at the shop. <a class="link" href="#book">Book a chair</a></p>
+      </div>
+      <div class="grid grid--top" id="prices">
+        <div class="span-6">
+          <p class="t-label">Cuts, beard and shave</p>
+          <ul class="rows">
+            <li><span class="rows__name">Haircut<span class="rows__dur">40 minutes</span></span><span class="rows__value">€28</span></li>
+            <li><span class="rows__name">Haircut and beard<span class="rows__dur">60 minutes</span></span><span class="rows__value">€42</span></li>
+            <li><span class="rows__name">Beard trim<span class="rows__dur">20 minutes</span></span><span class="rows__value">€18</span></li>
+            <li><span class="rows__name">Hot-towel shave<span class="rows__dur">30 minutes</span></span><span class="rows__value">€30</span></li>
+            <li><span class="rows__name">Kids’ cut, under 12<span class="rows__dur">30 minutes</span></span><span class="rows__value">€20</span></li>
+          </ul>
+        </div>
+        <figure class="pl-photo span-6" data-moment="picture-develops"><img src="assets/img/photo-f170755265-960.jpg" srcset="assets/img/photo-f170755265-500.jpg 500w, assets/img/photo-f170755265-960.jpg 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 100vw, 50vw" width="960" height="762" alt="An old white barber chair beside a desk fan and a counter of tools" loading="lazy" decoding="async" data-source="stand-in" data-subject="a barber chair"></figure>
+      </div>
+      <div class="visit visit--cols" id="visit" data-place="visit" style="margin-top: var(--s-7)">
+        <div class="visit__cols">
+          <div class="visit__col stack-4">
+            <p class="t-label">Address</p>
+            <address class="visit__address">Linden Street</address>
+          </div>
+          <div class="visit__col stack-4">
+            <p class="t-label">Opening hours</p>
+            <dl class="hours"><dt data-days="tue-sat">Tuesday to Saturday</dt><dd>10:00 to 19:00</dd><dt data-days="sun,mon">Sunday and Monday</dt><dd>Closed</dd></dl>
+          </div>
+          <div class="visit__col stack-4">
+            <p class="t-label">Booking</p>
+            <p>Every chair is booked by the half hour. A free slot online is a free chair.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="book" aria-labelledby="book-h">
+    <div class="wrap">
+      <div class="grid grid--top head-row">
+        <h2 class="span-6" id="book-h">Book a chair</h2>
+        <p class="span-6 start-7">Pick a service and a day to see the free times.</p>
+      </div>
+      <div class="book">
+        <form class="form book__form" action="mailto:chair@lindenstreet.example" method="post" enctype="text/plain" data-endpoint="" data-sent="Your chair request is in. We reply within a day." novalidate>
+            <div class="field"><label for="f-service">Service</label>
+              <select id="f-service" name="service" required>
+                <option value="Haircut" data-min="40" data-price="28">Haircut</option>
+                <option value="Haircut and beard" data-min="60" data-price="42">Haircut and beard</option>
+                <option value="Beard trim" data-min="20" data-price="18">Beard trim</option>
+                <option value="Hot-towel shave" data-min="30" data-price="30">Hot-towel shave</option>
+                <option value="Kids’ cut" data-min="30" data-price="20">Kids’ cut, under 12</option>
+              </select></div>
+            <div class="field"><label for="f-date">Day</label>
+              <input id="f-date" name="date" type="date" required aria-describedby="f-date-err">
+              <p class="field__error" id="f-date-err" hidden>Pick a day from Tuesday to Saturday.</p></div>
+          <fieldset class="slots field--full" aria-describedby="f-time-err">
+            <legend>Free times</legend>
+            <div class="slots__grid" id="slots"><p class="slots__note">Pick a day to see the free times.</p></div>
+            <p class="field__error" id="f-time-err" hidden>Pick one of the free times.</p>
+          </fieldset>
+            <div class="field"><label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err" hidden>Write the name the chair is held under.</p></div>
+            <div class="field"><label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+              <p class="field__error" id="f-email-err" hidden>Write an email address with an @, like name@example.com.</p></div>
+          <div class="btn-row"><button class="btn btn--primary" type="submit">Book a chair</button></div>
+          <p class="form__status" role="status" data-form-status></p>
+        </form>
+        <aside class="book__sum" aria-label="Your booking">
+          <p class="t-label">Your booking</p>
+          <dl class="sum__list">
+            <dt>Service</dt><dd id="s-service">Haircut</dd>
+            <dt>Takes</dt><dd id="s-min">40 minutes</dd>
+            <dt>Day</dt><dd id="s-day">Not picked yet</dd>
+            <dt>Time</dt><dd id="s-time">Not picked yet</dd>
+          </dl>
+          <p class="sum__total"><span>To pay at the shop</span><span id="s-price">€28</span></p>
+          <p class="t-small">We reply within a day to confirm the chair.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing ground-brand" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Book your next cut</h2>
+        <p class="t-lead">Tuesday to Saturday, 10:00 to 19:00.</p>
+      </div>
+      <a class="btn btn--primary btn--xl" href="#book">Book a chair<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top">Linden Street Barbers</a>
+          <p class="footer__lede">Cuts, beards and shaves on Linden Street.</p>
+        </div>
+        <div class="span-3 footer__col"><h3>Visit</h3><ul><li><a href="#visit">Linden Street</a></li><li><a href="#visit">Tuesday to Saturday</a></li></ul></div>
+        <div class="span-3 footer__col"><h3>Shop</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#book">Booking</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="mailto:chair@lindenstreet.example">Email us</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>© 2026 Linden Street Barbers · A concept site by Nikita S.</span>
+        <a class="credits" href="credits.html">Photographs via Wikimedia Commons</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<nav class="actionbar" aria-label="Quick actions">
+  <a class="btn btn--primary" href="#book">Book a chair</a>
+</nav>
+
+<script>
+  // the free times for the day picked, and the summary beside the form
+  (function () {
+    var service = document.getElementById('f-service'), date = document.getElementById('f-date'), slots = document.getElementById('slots');
+    var put = function (id, v) { document.getElementById(id).textContent = v; };
+    var iso = function (d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+    date.min = iso(new Date());
+    function note(t) { slots.replaceChildren(); var p = document.createElement('p'); p.className = 'slots__note'; p.textContent = t; slots.append(p); }
+    function render() {
+      put('s-time', 'Not picked yet');
+      if (!date.value) { put('s-day', 'Not picked yet'); return note('Pick a day to see the free times.'); }
+      var d = new Date(date.value + 'T12:00:00');
+      put('s-day', d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }));
+      if (d.getDay() === 0 || d.getDay() === 1) return note('The shop is closed on Sunday and Monday. Pick another day.');
+      slots.replaceChildren();
+      for (var i = 0; i < 18; i++) {
+        var m = 600 + i * 30, t = String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+        var l = document.createElement('label'); l.className = 'slot';
+        var input = document.createElement('input'); input.type = 'radio'; input.name = 'time'; input.value = t; input.required = true;
+        input.disabled = (d.getDate() * 3 + i * 7) % 5 === 0;
+        input.setAttribute('aria-label', t + (input.disabled ? ', taken' : ', free'));
+        var s = document.createElement('span'); s.textContent = t;
+        l.append(input, s); slots.append(l);
+      }
+    }
+    service.addEventListener('change', function () {
+      var o = service.selectedOptions[0];
+      put('s-service', o.textContent); put('s-min', o.dataset.min + ' minutes'); put('s-price', '€' + o.dataset.price);
+    });
+    date.addEventListener('change', render);
+    slots.addEventListener('change', function (e) { if (e.target.name === 'time') put('s-time', e.target.value); });
+  })();
+</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+</body>
+</html>
