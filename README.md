@@ -1,18 +1,18 @@
 # Linden Street Barbers
 
-A concept website for a barbershop on Linden Street: prices, opening hours and an online booking with free half-hour slots. Plain HTML, CSS and JavaScript, no build step.
+A concept website for a barbershop on Linden Street. Plain HTML, CSS and JavaScript in one file, no build step.
 
 ## What is on the page
-- A full-width photograph of the shop and one button to book
-- The price list with each service's length, beside a photograph that develops like a print as it comes on screen
-- Address, opening hours and how booking works
-- Booking: pick a service and a day, see the free and taken times, and a summary with the price updates as you choose
-- A phone bar with the booking button once the hero has scrolled away
+- A light, modern first screen with the next free chair, worked out from the booking calendar
+- Services and prices as cards, each with a "Book this" link that fills in the form
+- A gallery of the work, three steps of a visit
+- Booking in four steps: service, a day from the next two weeks, a free half-hour time, name and email, with a live summary and a confirmation
+- Opening hours with today marked and an "open now" label, address and contact
+- A booking bar on phones that hides when the form is on screen
 
 ## Run it
-Open `index.html` through any local server, for example:
 ```bash
 npx serve .
 ```
 
-Photographs are stand-ins from Wikimedia Commons, listed in `credits.html`.
+Photographs from Unsplash (free licence). Booking is a front-end demo: free and taken times are generated, nothing is sent.

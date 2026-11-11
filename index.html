@@ -1,275 +1,583 @@
-<!doctype html>
-<html lang="en" data-type="place" data-radius="soft" data-buttons="arrow" data-page-mode="short" data-motion>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Linden Street Barbers: barbershop on Linden Street</title>
-<meta name="description" content="Haircuts, beard trims and hot-towel shaves from €18, Tuesday to Saturday. Pick a free time online and the chair is held.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Linden Street Barbers: barbershop on Linden Street">
-<meta property="og:description" content="Haircuts, beard trims and hot-towel shaves, booked online.">
-<meta property="og:image" content="share.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<title>Linden Street Barbers: cuts, beards and shaves</title>
+<meta name="description" content="Barbershop on Linden Street. Haircuts, beard trims and hot-towel shaves, Tuesday to Saturday, 10:00 to 19:00. Book a chair online.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f4efe5">
-<meta name="site-kind" content="other">
-<meta name="page-type" content="place">
-<meta name="page-kind" content="place">
+<meta name="theme-color" content="#f6f3ee">
+<meta property="og:title" content="Linden Street Barbers">
+<meta property="og:image" content="share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/system.css">
-<link rel="stylesheet" href="assets/ui/cards.css">
-<link rel="stylesheet" href="assets/motion/motion.css">
-<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
-<link rel="stylesheet" href="assets/layout/layout.css">
-<link rel="stylesheet" href="assets/icons/icon.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="preload" as="image" href="img/interior-1800.jpg" imagesrcset="img/interior-900.jpg 900w, img/interior-1800.jpg 1800w" imagesizes="(max-width: 900px) 100vw, 58vw">
 <style>
-:root {
-  --p-bg: #f4efe5; --p-surface: #e7dfcf; --p-ink: #29251e; --p-muted: #675e51;
-  --p-accent: #8c6418; --p-accent-ink: #ffffff; --p-action: #8c6418; --p-action-ink: #ffffff;
-  --p-inv-bg: #29251e; --p-inv-surface: #35312a; --p-inv-ink: #f4efe5; --p-inv-muted: #a09b92;
-  --p-inv-accent: #f4efe5; --p-inv-accent-ink: #29251e; --p-inv-action: #f4efe5; --p-inv-action-ink: #29251e;
-  --font-display: "Work Sans", system-ui, sans-serif;
-  --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400;
-  --display-tracking: -0.025em;
+:root{
+  --bg:#f6f3ee;--paper:#fffdf9;--ink:#151513;--ink-2:#3b3a36;--muted:#75716a;--line:#e5dfd4;
+  --green:#1d4334;--green-2:#2a5a46;--green-ink:#e9f1ec;--brass:#b98b4e;--brass-soft:#f1e5d2;
+  --r:22px;--r-sm:14px;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Instrument Serif",Georgia,serif;
 }
-</style>
-<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
-<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
-<link rel="modulepreload" href="assets/moments/moments.js">
-<link rel="modulepreload" href="assets/moments/lib.js">
-<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
-<style>
-  /* page CSS: the price list beside its photograph, the booking's time grid and summary */
-  #shop .pl-photo { margin: 0; }
-  #shop .pl-photo > img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
-  .rows__dur { display: block; color: var(--muted); }
-  .book { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-5); row-gap: var(--s-7); margin-top: var(--s-7); align-items: start; }
-  .head-row { margin-bottom: var(--s-7); align-items: start; }
-  .head-row p { padding-top: 14px; }
-  .head-row p { margin: 0; }
-  .ground-brand .footer__col h3, .ground-brand .footer__legal, .ground-brand .footer__legal a { color: var(--ink); }
-  .book__form { grid-column: 1 / span 6; align-content: start; row-gap: var(--s-5); }
-  .book__sum { grid-column: 7 / span 6; align-self: start; display: grid; gap: var(--s-4); padding-left: 0; }
-  .book__form .field select { width: 100%; }
-  .slots { border: 0; margin: 0; padding: 0; min-width: 0; }
-  .slots legend { padding: 0; margin-bottom: var(--s-2); font-size: var(--t-small); font-weight: 500; }
-  .slots__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s-2); }
-  .slots__note { margin: 0; color: var(--ink); grid-column: 1 / -1; }
-  .slot { position: relative; }
-  .slot input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-  .slot span { display: grid; place-items: center; height: 44px; border: 1px solid var(--line-strong); background: var(--bg); font-variant-numeric: tabular-nums; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s; }
-  .slot input:hover + span { border-color: var(--ink); }
-  .slot input:checked + span { background: var(--action); border-color: var(--action); color: var(--action-ink); }
-  .slot input:focus-visible + span { outline: 2px solid var(--action); outline-offset: 2px; }
-  .slot input:disabled + span { color: var(--muted); text-decoration: line-through; border-style: dashed; cursor: not-allowed; }
-  .sum__list { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-3) var(--s-5); }
-  .sum__list dt { color: var(--muted); }
-  .sum__list dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
-  .sum__total { padding-top: var(--s-4); border-top: 1px solid var(--line-strong); display: flex; justify-content: space-between; font-size: var(--t-card); }
-  @media (max-width: 1023px) { .book__form { grid-column: 1 / -1; } .book__sum { grid-column: 1 / -1; } }
-  @media (max-width: 639px) { .slots__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (min-width: 640px) and (max-width: 1023px) {
-    #shop { --h: 2; }
-    #shop .grid > .pl-photo { grid-column: 1 / -1; order: -1; }
-    #shop .visit__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-  #book { --h: 1; }
-  @media (max-width: 1023px) { #book { --h: 2; } }
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(2.1rem,4.6vw,3.5rem)}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.lead{font-size:1.15rem;color:var(--ink-2);max-width:36ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:0 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s}
+.btn svg{width:18px;height:18px;transition:transform .2s}
+.btn:hover svg{transform:translateX(3px)}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--dark:hover{background:var(--green)}
+.btn--line{border-color:var(--ink);background:transparent}
+.btn--line:hover{background:var(--ink);color:#fff}
+.btn--light{background:#fff;color:var(--ink)}
+.btn--light:hover{background:var(--brass-soft)}
+.btn:active{transform:scale(.98)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:.6rem 1rem;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:2rem;min-height:76px}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto}
+.logo svg{width:34px;height:34px}
+.logo b{display:block;font-size:1.15rem;letter-spacing:-.01em;line-height:1.1}
+.logo small{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:1.8rem}
+.nav a{text-decoration:none;font-weight:500;color:var(--ink-2);position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover::after{transform:scaleX(1)}
+.top .btn{min-height:44px;padding:0 1.2rem}
+
+/* hero */
+.hero{padding:1.5rem 0 5rem}
+.hero .wrap{display:grid;grid-template-columns:5fr 7fr;gap:3.5rem;align-items:center}
+.hero h1{font-size:clamp(2.9rem,5.6vw,5.2rem);margin:1.1rem 0 1.3rem}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:2.2rem;margin-top:2.8rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+.facts b{display:block;font-size:1.05rem}
+.facts span{font-size:.9rem;color:var(--muted)}
+.hero__pic{position:relative}
+.hero__pic>img{width:100%;aspect-ratio:6/5;max-height:calc(100vh - 150px);min-height:420px;object-fit:cover;object-position:50% 78%;border-radius:var(--r)}
+.nextchair{position:absolute;left:-2rem;bottom:2rem;display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem 1rem 1rem;background:var(--paper);border-radius:18px;box-shadow:0 20px 50px -20px rgb(20 20 18/.35);text-decoration:none;max-width:320px}
+.nextchair i{flex:none;width:12px;height:12px;border-radius:50%;background:#3faf6c;box-shadow:0 0 0 6px rgb(63 175 108/.18);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px rgb(63 175 108/.05)}}
+.nextchair small{display:block;font-size:.8rem;color:var(--muted)}
+.nextchair b{display:block;font-size:1.05rem}
+.nextchair span{font-size:.88rem;font-weight:600;color:var(--green)}
+.badge{position:absolute;right:1.4rem;top:1.4rem;width:112px;height:112px;border-radius:50%;background:var(--green);color:var(--green-ink);display:grid;place-items:center;text-align:center;font-size:.78rem;line-height:1.25;letter-spacing:.06em;text-transform:uppercase;font-weight:600;rotate:-8deg}
+.badge b{display:block;font:italic 400 2rem/1 var(--serif);letter-spacing:0;text-transform:none;color:#fff}
+
+section{scroll-margin-top:80px}
+.sec{padding:6rem 0}
+.sec__head{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-bottom:3rem}
+.sec__head p{margin:.9rem 0 0;color:var(--muted);max-width:44ch}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.svc{position:relative;display:grid;grid-template-columns:1fr auto;gap:.4rem 1.5rem;padding:1.8rem 1.9rem;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);transition:border-color .2s,transform .2s,box-shadow .2s}
+.svc:hover{border-color:var(--ink-2);transform:translateY(-2px);box-shadow:0 18px 40px -26px rgb(20 20 18/.4)}
+.svc h3{font-size:1.45rem;letter-spacing:-.015em}
+.svc p{grid-column:1/-1;margin:.2rem 0 1rem;color:var(--muted);max-width:42ch}
+.svc .price{font-size:1.9rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.svc .meta{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px dashed var(--line)}
+.svc .dur{display:inline-flex;align-items:center;gap:.45rem;font-size:.92rem;color:var(--ink-2)}
+.svc .dur svg{width:16px;height:16px}
+.svc .book{font-weight:600;color:var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem}
+.svc .book::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
+.svc .book svg{width:16px;height:16px;transition:transform .2s}
+.svc:hover .book svg{transform:translateX(3px)}
+.svc--wide{grid-column:1/-1;background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.svc--wide h3,.svc--wide .price{color:#fff}
+.svc--wide p{color:color-mix(in srgb,var(--green-ink) 80%,transparent)}
+.svc--wide .meta{border-top-color:rgb(255 255 255/.2)}
+.svc--wide .dur{color:var(--green-ink)}
+.svc--wide .book{color:#fff}
+.svc .tag{display:inline-block;margin-left:.6rem;vertical-align:middle;padding:.15rem .6rem;border-radius:999px;background:var(--brass);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* craft gallery */
+.craft{display:grid;grid-template-columns:1.15fr 1fr 1fr;grid-template-rows:300px 300px;gap:1rem}
+.shot{position:relative;margin:0;overflow:hidden;border-radius:var(--r);background:#ddd}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.shot:hover img{transform:scale(1.04)}
+.shot figcaption{position:absolute;left:1rem;bottom:1rem;padding:.45rem .9rem;border-radius:999px;background:rgb(255 253 249/.92);font-size:.9rem;font-weight:600}
+.shot--tall{grid-row:span 2}
+.shot--wide{grid-column:span 2}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;counter-reset:s}
+.step{padding-top:1.5rem;border-top:1.5px solid var(--ink)}
+.step::before{counter-increment:s;content:"0" counter(s);display:block;font:italic 400 2.6rem/1 var(--serif);color:var(--brass);margin-bottom:1rem}
+.step h3{font-size:1.3rem;margin-bottom:.5rem}
+.step p{margin:0;color:var(--muted)}
+
+/* booking */
+.booking{background:var(--green);color:var(--green-ink);border-radius:36px;margin:0 20px;padding:5.5rem 0}
+.booking .eyebrow{color:var(--brass-soft)}
+.booking h2{color:#fff}
+.booking .sec__head p{color:color-mix(in srgb,var(--green-ink) 75%,transparent)}
+.bookform{display:grid;grid-template-columns:1fr 340px;gap:1.2rem;align-items:start}
+.card{background:var(--paper);color:var(--ink);border-radius:var(--r);padding:2rem}
+.stepper{display:grid;gap:2rem}
+.fs{border:0;margin:0;padding:0;min-width:0}
+.fs legend{display:flex;align-items:center;gap:.7rem;font-weight:600;font-size:1.1rem;margin-bottom:1rem;padding:0}
+.fs legend span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:.82rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.6rem}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:block;height:100%;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:var(--r-sm);transition:border-color .15s,background .15s}
+.opt b{display:block;font-weight:600;line-height:1.25}
+.opt small{color:var(--muted)}
+.opt:hover span{border-color:var(--ink-2)}
+.opt input:checked+span{border-color:var(--green);background:color-mix(in srgb,var(--green) 7%,var(--paper));box-shadow:inset 0 0 0 1px var(--green)}
+.opt input:focus-visible+span{outline:2px solid var(--brass);outline-offset:2px}
+.opt input:disabled+span{opacity:.38;text-decoration:line-through;cursor:not-allowed}
+.days{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.4rem;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.days .opt{flex:none;width:76px;scroll-snap-align:start}
+.days .opt span{text-align:center;padding:.7rem .3rem}
+.days .opt small{display:block;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
+.days .opt b{font-size:1.4rem}
+.times{grid-template-columns:repeat(auto-fill,minmax(88px,1fr))}
+.times .opt span{text-align:center;padding:.65rem .3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.hint{margin:.4rem 0 0;color:var(--muted);font-size:.92rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.field{display:grid;gap:.35rem}
+.field label{font-weight:600;font-size:.94rem}
+.field input,.field textarea{width:100%;min-height:50px;padding:.75rem .95rem;border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff}
+.field textarea{min-height:90px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 18%,transparent)}
+.field--full{grid-column:1/-1}
+.err{color:#b23b2c;font-size:.88rem;min-height:1.2em}
+.summary{position:sticky;top:96px;display:grid;gap:0}
+.summary h3{font-size:1.2rem;margin-bottom:1rem}
+.summary dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.7rem 1rem}
+.summary dt{color:var(--muted)}
+.summary dd{margin:0;text-align:right;font-weight:600}
+.summary .total{display:flex;justify-content:space-between;align-items:baseline;margin:1.4rem 0;padding-top:1.2rem;border-top:1px dashed var(--line)}
+.summary .total b{font-size:2rem;letter-spacing:-.02em}
+.summary .btn{width:100%}
+.summary .fine{font-size:.86rem;color:var(--muted);margin:1rem 0 0}
+.done{display:none;text-align:center;padding:3rem 2rem}
+.done svg{width:56px;height:56px;margin:0 auto 1rem;color:var(--green)}
+.done h3{font-size:1.8rem;margin-bottom:.6rem}
+.done p{color:var(--muted);margin:0 auto 1.4rem;max-width:40ch}
+.bookform.sent .stepper,.bookform.sent .summary{display:none}
+.bookform.sent .done{display:block;grid-column:1/-1}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.visit__pic{border-radius:var(--r);overflow:hidden;min-height:420px}
+.visit__pic img{width:100%;height:100%;object-fit:cover}
+.info{display:grid;gap:1rem}
+.info .card{border:1px solid var(--line);padding:1.8rem}
+.info h3{font-size:1.15rem;margin-bottom:1rem}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.hours tr.today td{color:var(--green)}
+.hours tr.today td:first-child::after{content:"Today";margin-left:.6rem;padding:.1rem .5rem;border-radius:999px;background:var(--green);color:#fff;font-size:.72rem;font-weight:600;vertical-align:middle}
+.hours tr:last-child td{border-bottom:0}
+.open-now{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;margin-bottom:1rem}
+.open-now i{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.open-now.on i{background:#3faf6c}
+.contact{display:grid;gap:.8rem}
+.contact a{display:flex;align-items:center;gap:.7rem;text-decoration:none;font-weight:500}
+.contact a:hover{color:var(--green)}
+.contact svg{width:20px;height:20px;flex:none;color:var(--green)}
+
+/* footer */
+.cta{padding:6rem 0 4rem;text-align:center}
+.cta h2{font-size:clamp(2.6rem,7vw,5.4rem);margin:1rem auto 2rem;max-width:14ch}
+footer{background:var(--ink);color:#c9c4ba;padding:3.5rem 0 2.5rem;margin-top:1rem}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
+footer .logo{color:#fff}
+footer .logo small{color:#9a958b}
+footer h4{margin:0 0 .8rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+.legal{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:2rem;margin-top:1rem;border-top:1px solid #2e2d2a;font-size:.88rem;color:#8d887e}
+
+.mbar{display:none}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .nav{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:2.2rem}
+  .hero__pic>img{aspect-ratio:4/3.3;min-height:0;max-height:62vh}
+  .nextchair{left:1rem;bottom:1rem}
+  .bookform{grid-template-columns:1fr}
+  .summary{position:static}
+  .craft{grid-template-columns:1fr 1fr;grid-template-rows:240px 240px 240px}
+  .shot--tall{grid-row:span 1;grid-column:span 2}
+  .visit{grid-template-columns:1fr}
+  .visit__pic{min-height:280px}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .wrap{width:calc(100% - 32px)}
+  .top .btn{display:none}
+  .hero{padding:1rem 0 3.5rem}
+  .facts{grid-template-columns:1fr 1fr;gap:1.2rem}
+  .badge{width:90px;height:90px;font-size:.66rem;right:1rem;top:1rem}
+  .badge b{font-size:1.6rem}
+  .sec{padding:4.2rem 0}
+  .sec__head{grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
+  .services{grid-template-columns:1fr}
+  .svc{padding:1.5rem}
+  .craft{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:240px}
+  .shot--tall,.shot--wide{grid-column:auto;grid-row:auto}
+  .steps{grid-template-columns:1fr;gap:1.6rem}
+  .booking{margin:0 8px;border-radius:26px;padding:4rem 0}
+  .card{padding:1.4rem}
+  .fields{grid-template-columns:1fr}
+  .opts{grid-template-columns:1fr 1fr}
+  .times{grid-template-columns:repeat(3,1fr)}
+  footer .wrap{grid-template-columns:1fr 1fr}
+  footer .wrap>div:first-child{grid-column:1/-1}
+  .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;transition:transform .3s}
+  .mbar .btn{flex:1;box-shadow:0 12px 30px -10px rgb(0 0 0/.5)}
+  .mbar.hide{transform:translateY(140%)}
+  footer{padding-bottom:6rem}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<!-- type: place (a barbershop people walk into), the short page: two stand-in photographs in one black-and-white grade
-     deal: nav split (nav-cards dealt, no photographs left for its panel: re-dealt), footer columns, rhythm colour-band
-     (the close on the ochre brand ground), buttons arrow, mark stack; palette limewash-ochre (the warm cream of a
-     barber's towels and the ochre of old brass fittings), type work-sans.
-     not used on the short page: the place's composition (wall), the type moment (name), the rooms layout (side).
-     moments: picture-develops on the price list's photograph (#shop) -->
-<header class="nav nav--split">
-  <div class="wrap nav__bar">
-    <a class="skip-link" href="#top">Skip to content</a>
-    <nav class="nav__links" aria-label="Main">
-      <div class="nav__item"><a class="nav__link" href="#prices">Prices</a></div>
-      <div class="nav__item"><a class="nav__link" href="#visit">Visit</a></div>
-      <div class="nav__item"><a class="nav__link" href="#book">Booking</a></div>
-    </nav>
-    <a class="nav__logo" href="#top"><span class="mark" data-mark="stack" aria-hidden="true"></span>Linden Street Barbers</a>
-    <div class="nav__actions">
-      <a class="btn btn--primary" href="#book">Book a chair</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top"><div class="wrap">
+  <a class="logo" href="#main" aria-label="Linden Street Barbers, home">
+    <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#1d4334"/><path d="M11 8v18h12" fill="none" stroke="#f1e5d2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="11" r="3" fill="#b98b4e"/></svg>
+    <span><b>Linden Street</b><small>Barbers</small></span>
+  </a>
+  <nav class="nav" aria-label="Main"><a href="#services">Services</a><a href="#craft">The work</a><a href="#booking">Booking</a><a href="#visit">Visit</a></nav>
+  <a class="btn btn--dark" href="#booking">Book a chair</a>
+</div></header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Barbershop on Linden Street</span>
+      <h1>Sharp cuts, <em class="s">unhurried</em> service.</h1>
+      <p class="lead">Haircuts, beard work and hot-towel shaves by appointment. Every chair is booked by the half hour, so nobody waits.</p>
+      <div class="actions">
+        <a class="btn btn--dark" href="#booking">Book a chair <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn--line" href="#services">See prices</a>
+      </div>
+      <div class="facts">
+        <div><b>Tue to Sat</b><span>10:00 to 19:00</span></div>
+        <div><b>From €18</b><span>beard trim</span></div>
+        <div><b>Online</b><span>pick your time</span></div>
+      </div>
     </div>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
+    <div class="hero__pic">
+      <img src="img/interior-1800.jpg" srcset="img/interior-900.jpg 900w, img/interior-1800.jpg 1800w" sizes="(max-width: 980px) 100vw, 58vw" width="1600" height="1760" alt="A row of barber chairs and mirrors under pendant lamps in a bright shop" fetchpriority="high">
+      <div class="badge" aria-hidden="true"><span><b>10–19</b>Tue to Sat</span></div>
+      <a class="nextchair" href="#booking" id="nextchair"><i aria-hidden="true"></i><span><small>Next free chair</small><b id="nc-when">Checking…</b><span>Book this time →</span></span></a>
+    </div>
   </div>
-</header>
+</section>
 
-<main id="top">
-  <section class="hero hero--place" data-enter aria-labelledby="hero-h">
-    <img class="hero__bg" src="assets/img/photo-f101285686-1280.jpg" srcset="assets/img/photo-f101285686-500.jpg 500w, assets/img/photo-f101285686-960.jpg 960w, assets/img/photo-f101285686-1280.jpg 1280w" sizes="(max-width: 639px) 188vw, 100vw" width="1280" height="853" alt="Two barber chairs facing a long mirror and counter on a checkered floor" fetchpriority="high" decoding="async" data-phone-fill data-source="stand-in" data-subject="the shop's two chairs" style="--ly-pos: 50% 100%; --ly-pos-phone: 30% 100%">
-    <div class="wrap"><div class="hero-text">
-      <div class="hero__text">
-        <h1 id="hero-h">Barbershop on Linden Street</h1>
-        <p class="hero__lead">Cuts, beard trims and hot-towel shaves, Tuesday to Saturday, 10:00 to 19:00.</p>
-        <div class="btn-row"><a class="btn btn--primary" href="#book">Book a chair<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></div>
-      </div>
-    </div></div>
-  </section>
+<section class="sec" id="services" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div><span class="eyebrow">Services and prices</span><h2>Pick your <em class="s">service</em></h2><p>Prices in euros, tax included, paid at the shop by card or cash.</p></div>
+      <a class="btn btn--line" href="#booking">Book online</a>
+    </div>
+    <div class="services">
+      <article class="svc svc--wide reveal">
+        <h3>Haircut and beard <span class="tag">Most booked</span></h3><span class="price">€42</span>
+        <p>The full haircut with a wash and style, then a beard shape with a hot towel and razor-clean lines.</p>
+        <div class="meta"><span class="dur"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>60 minutes</span><a class="book" href="#booking" data-pick="combo">Book this <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+      <article class="svc reveal">
+        <h3>Haircut</h3><span class="price">€28</span>
+        <p>A short chat about what you want, then wash, cut and style. Clippers, scissors or both.</p>
+        <div class="meta"><span class="dur"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>40 minutes</span><a class="book" href="#booking" data-pick="cut">Book this <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+      <article class="svc reveal">
+        <h3>Hot-towel shave</h3><span class="price">€30</span>
+        <p>Two hot towels, pre-shave oil and a straight-razor shave, finished with a cold towel and balm.</p>
+        <div class="meta"><span class="dur"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>30 minutes</span><a class="book" href="#booking" data-pick="shave">Book this <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+      <article class="svc reveal">
+        <h3>Beard trim</h3><span class="price">€18</span>
+        <p>Length, shape and clean lines on the cheeks and neck, finished with beard oil.</p>
+        <div class="meta"><span class="dur"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>20 minutes</span><a class="book" href="#booking" data-pick="beard">Book this <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+      <article class="svc reveal">
+        <h3>Kids’ cut</h3><span class="price">€20</span>
+        <p>For children under 12. A relaxed cut with time to sit still, and a parent in the next chair.</p>
+        <div class="meta"><span class="dur"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>30 minutes</span><a class="book" href="#booking" data-pick="kids">Book this <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="shop" aria-labelledby="shop-h" style="--h: 1; --hm: 2">
-    <div class="wrap">
-      <div class="grid grid--top head-row">
-        <h2 class="span-6" id="shop-h">Prices and opening hours</h2>
-        <p class="span-6 start-7">All prices in euros, tax included, paid at the shop. <a class="link" href="#book">Book a chair</a></p>
+<section class="sec" id="craft" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="sec__head reveal"><div><span class="eyebrow">The work</span><h2>Clean lines, <em class="s">every time</em></h2></div></div>
+    <div class="craft">
+      <figure class="shot shot--tall reveal"><img src="img/fade-1200.jpg" srcset="img/fade-700.jpg 700w, img/fade-1200.jpg 1200w" sizes="(max-width: 680px) 100vw, 38vw" alt="A barber finishing a short skin fade with a comb and clippers" loading="lazy"><figcaption>Skin fades</figcaption></figure>
+      <figure class="shot reveal"><img src="img/shears-1200.jpg" srcset="img/shears-700.jpg 700w, img/shears-1200.jpg 1200w" sizes="(max-width: 680px) 100vw, 30vw" alt="Thinning shears and a comb working through the top of a haircut" loading="lazy"><figcaption>Scissor work</figcaption></figure>
+      <figure class="shot reveal"><img src="img/razor-1200.jpg" srcset="img/razor-700.jpg 700w, img/razor-1200.jpg 1200w" sizes="(max-width: 680px) 100vw, 30vw" alt="A straight razor cleaning up the line above a client's ear" loading="lazy"><figcaption>Razor line-ups</figcaption></figure>
+      <figure class="shot shot--wide reveal"><img src="img/tools-1200.jpg" srcset="img/tools-700.jpg 700w, img/tools-1200.jpg 1200w" sizes="(max-width: 680px) 100vw, 60vw" alt="Clippers, scissors, a comb and pomade laid out on a slate board" loading="lazy"><figcaption>Tools cleaned after every client</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="sec__head reveal"><div><span class="eyebrow">How a visit goes</span><h2>Forty minutes, <em class="s">start to finish</em></h2></div></div>
+    <div class="steps">
+      <div class="step reveal"><h3>Book a half hour</h3><p>Pick a service, a day and a free time below. We hold the chair under your name and reply by email the same day.</p></div>
+      <div class="step reveal"><h3>Talk it through</h3><p>Show a photo or describe what you want. We tell you what suits your hair and how long it will hold.</p></div>
+      <div class="step reveal"><h3>Cut, finish, go</h3><p>Wash, cut, hot towel and style. Pay at the desk by card or cash and book the next one if you like.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="sec__head"><div><span class="eyebrow">Booking</span><h2>Hold a <em class="s">chair</em></h2><p>Three steps. A free time on this page is a free chair at the shop.</p></div></div>
+    <form class="bookform" id="book" novalidate>
+      <div class="card stepper">
+        <fieldset class="fs"><legend><span>1</span>Service</legend><div class="opts" id="svcOpts"></div></fieldset>
+        <fieldset class="fs"><legend><span>2</span>Day</legend><div class="days" id="days"></div></fieldset>
+        <fieldset class="fs"><legend><span>3</span>Time</legend><div class="opts times" id="times"></div><p class="hint" id="timeHint">Pick a day to see the free times.</p></fieldset>
+        <fieldset class="fs"><legend><span>4</span>Your details</legend>
+          <div class="fields">
+            <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required><span class="err" id="e-email"></span></div>
+            <div class="field field--full"><label for="f-note">Anything we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="f-note" name="note" placeholder="For example: keep the length on top"></textarea></div>
+          </div>
+        </fieldset>
       </div>
-      <div class="grid grid--top" id="prices">
-        <div class="span-6">
-          <p class="t-label">Cuts, beard and shave</p>
-          <ul class="rows">
-            <li><span class="rows__name">Haircut<span class="rows__dur">40 minutes</span></span><span class="rows__value">€28</span></li>
-            <li><span class="rows__name">Haircut and beard<span class="rows__dur">60 minutes</span></span><span class="rows__value">€42</span></li>
-            <li><span class="rows__name">Beard trim<span class="rows__dur">20 minutes</span></span><span class="rows__value">€18</span></li>
-            <li><span class="rows__name">Hot-towel shave<span class="rows__dur">30 minutes</span></span><span class="rows__value">€30</span></li>
-            <li><span class="rows__name">Kids’ cut, under 12<span class="rows__dur">30 minutes</span></span><span class="rows__value">€20</span></li>
-          </ul>
+      <aside class="card summary" aria-live="polite">
+        <h3>Your booking</h3>
+        <dl><dt>Service</dt><dd id="s-svc">—</dd><dt>Takes</dt><dd id="s-dur">—</dd><dt>Day</dt><dd id="s-day">Not picked yet</dd><dt>Time</dt><dd id="s-time">Not picked yet</dd></dl>
+        <div class="total"><span>To pay at the shop</span><b id="s-price">—</b></div>
+        <button class="btn btn--dark" type="submit">Book this chair</button>
+        <p class="err" id="e-form" style="margin:.6rem 0 0"></p>
+        <p class="fine">Free to cancel up to two hours before. We reply by email to confirm.</p>
+      </aside>
+      <div class="card done" id="done" tabindex="-1">
+        <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="m17 29 7.5 7.5L39.5 21" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>The chair is yours</h3>
+        <p id="doneText"></p>
+        <button class="btn btn--line" type="button" id="again">Book another</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="visit">
+  <div class="wrap">
+    <div class="sec__head reveal"><div><span class="eyebrow">Visit</span><h2>Find the <em class="s">shop</em></h2></div></div>
+    <div class="visit">
+      <div class="visit__pic reveal"><img src="img/interior-900.jpg" alt="Inside the shop: chairs, mirrors and a wooden floor" loading="lazy"></div>
+      <div class="info">
+        <div class="card reveal">
+          <p class="open-now" id="openNow"><i></i><span>Opening hours</span></p>
+          <table class="hours" id="hours"><tbody>
+            <tr data-d="2"><td>Tuesday</td><td>10:00 – 19:00</td></tr>
+            <tr data-d="3"><td>Wednesday</td><td>10:00 – 19:00</td></tr>
+            <tr data-d="4"><td>Thursday</td><td>10:00 – 19:00</td></tr>
+            <tr data-d="5"><td>Friday</td><td>10:00 – 19:00</td></tr>
+            <tr data-d="6"><td>Saturday</td><td>10:00 – 19:00</td></tr>
+            <tr data-d="0"><td>Sunday and Monday</td><td>Closed</td></tr>
+          </tbody></table>
         </div>
-        <figure class="pl-photo span-6" data-moment="picture-develops"><img src="assets/img/photo-f170755265-960.jpg" srcset="assets/img/photo-f170755265-500.jpg 500w, assets/img/photo-f170755265-960.jpg 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 100vw, 50vw" width="960" height="762" alt="An old white barber chair beside a desk fan and a counter of tools" loading="lazy" decoding="async" data-source="stand-in" data-subject="a barber chair"></figure>
-      </div>
-      <div class="visit visit--cols" id="visit" data-place="visit" style="margin-top: var(--s-7)">
-        <div class="visit__cols">
-          <div class="visit__col stack-4">
-            <p class="t-label">Address</p>
-            <address class="visit__address">Linden Street</address>
-          </div>
-          <div class="visit__col stack-4">
-            <p class="t-label">Opening hours</p>
-            <dl class="hours"><dt data-days="tue-sat">Tuesday to Saturday</dt><dd>10:00 to 19:00</dd><dt data-days="sun,mon">Sunday and Monday</dt><dd>Closed</dd></dl>
-          </div>
-          <div class="visit__col stack-4">
-            <p class="t-label">Booking</p>
-            <p>Every chair is booked by the half hour. A free slot online is a free chair.</p>
+        <div class="card reveal">
+          <h3>Address and contact</h3>
+          <div class="contact">
+            <a href="#visit"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.2 6-10a6 6 0 0 0-12 0c0 4.8 6 10 6 10Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Linden Street, ground floor, by the corner café</a>
+            <a href="mailto:hello@lindenbarbers.example"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m3 5.5 7 5 7-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>hello@lindenbarbers.example</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="book" aria-labelledby="book-h">
-    <div class="wrap">
-      <div class="grid grid--top head-row">
-        <h2 class="span-6" id="book-h">Book a chair</h2>
-        <p class="span-6 start-7">Pick a service and a day to see the free times.</p>
-      </div>
-      <div class="book">
-        <form class="form book__form" action="mailto:chair@lindenstreet.example" method="post" enctype="text/plain" data-endpoint="" data-sent="Your chair request is in. We reply within a day." novalidate>
-            <div class="field"><label for="f-service">Service</label>
-              <select id="f-service" name="service" required>
-                <option value="Haircut" data-min="40" data-price="28">Haircut</option>
-                <option value="Haircut and beard" data-min="60" data-price="42">Haircut and beard</option>
-                <option value="Beard trim" data-min="20" data-price="18">Beard trim</option>
-                <option value="Hot-towel shave" data-min="30" data-price="30">Hot-towel shave</option>
-                <option value="Kids’ cut" data-min="30" data-price="20">Kids’ cut, under 12</option>
-              </select></div>
-            <div class="field"><label for="f-date">Day</label>
-              <input id="f-date" name="date" type="date" required aria-describedby="f-date-err">
-              <p class="field__error" id="f-date-err" hidden>Pick a day from Tuesday to Saturday.</p></div>
-          <fieldset class="slots field--full" aria-describedby="f-time-err">
-            <legend>Free times</legend>
-            <div class="slots__grid" id="slots"><p class="slots__note">Pick a day to see the free times.</p></div>
-            <p class="field__error" id="f-time-err" hidden>Pick one of the free times.</p>
-          </fieldset>
-            <div class="field"><label for="f-name">Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
-              <p class="field__error" id="f-name-err" hidden>Write the name the chair is held under.</p></div>
-            <div class="field"><label for="f-email">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
-              <p class="field__error" id="f-email-err" hidden>Write an email address with an @, like name@example.com.</p></div>
-          <div class="btn-row"><button class="btn btn--primary" type="submit">Book a chair</button></div>
-          <p class="form__status" role="status" data-form-status></p>
-        </form>
-        <aside class="book__sum" aria-label="Your booking">
-          <p class="t-label">Your booking</p>
-          <dl class="sum__list">
-            <dt>Service</dt><dd id="s-service">Haircut</dd>
-            <dt>Takes</dt><dd id="s-min">40 minutes</dd>
-            <dt>Day</dt><dd id="s-day">Not picked yet</dd>
-            <dt>Time</dt><dd id="s-time">Not picked yet</dd>
-          </dl>
-          <p class="sum__total"><span>To pay at the shop</span><span id="s-price">€28</span></p>
-          <p class="t-small">We reply within a day to confirm the chair.</p>
-        </aside>
-      </div>
-    </div>
-  </section>
+<section class="cta">
+  <div class="wrap reveal">
+    <span class="eyebrow">Your next cut</span>
+    <h2>A free chair is <em class="s">one click</em> away.</h2>
+    <a class="btn btn--dark" href="#booking">Book a chair <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
 </main>
 
-<footer class="footer closing ground-brand" id="contact" aria-labelledby="close-h">
+<footer>
   <div class="wrap">
-    <div class="closing__cta close--type">
-      <div class="section-head">
-        <h2 id="close-h">Book your next cut</h2>
-        <p class="t-lead">Tuesday to Saturday, 10:00 to 19:00.</p>
-      </div>
-      <a class="btn btn--primary btn--xl" href="#book">Book a chair<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    <div>
+      <a class="logo" href="#main"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#2a5a46"/><path d="M11 8v18h12" fill="none" stroke="#f1e5d2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="11" r="3" fill="#b98b4e"/></svg><span><b>Linden Street</b><small>Barbers</small></span></a>
+      <p style="max-width:34ch;margin:1rem 0 0">Cuts, beards and shaves by appointment, Tuesday to Saturday.</p>
     </div>
-    <div class="closing__links">
-      <div class="grid">
-        <div class="span-4 stack-4">
-          <a class="nav__logo" href="#top">Linden Street Barbers</a>
-          <p class="footer__lede">Cuts, beards and shaves on Linden Street.</p>
-        </div>
-        <div class="span-3 footer__col"><h3>Visit</h3><ul><li><a href="#visit">Linden Street</a></li><li><a href="#visit">Tuesday to Saturday</a></li></ul></div>
-        <div class="span-3 footer__col"><h3>Shop</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#book">Booking</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="mailto:chair@lindenstreet.example">Email us</a></li></ul></div>
-      </div>
-      <div class="footer__legal">
-        <span>© 2026 Linden Street Barbers · A concept site by Nikita S.</span>
-        <a class="credits" href="credits.html">Photographs via Wikimedia Commons</a>
-      </div>
-    </div>
+    <div><h4>Shop</h4><ul><li><a href="#services">Services</a></li><li><a href="#craft">The work</a></li><li><a href="#booking">Booking</a></li></ul></div>
+    <div><h4>Visit</h4><ul><li><a href="#visit">Opening hours</a></li><li><a href="mailto:hello@lindenbarbers.example">Email us</a></li></ul></div>
+    <div class="legal"><span>© 2026 Linden Street Barbers · A concept site by Nikita S.</span><span>Photographs from Unsplash</span></div>
   </div>
 </footer>
-
-<nav class="actionbar" aria-label="Quick actions">
-  <a class="btn btn--primary" href="#book">Book a chair</a>
-</nav>
+<div class="mbar" id="mbar"><a class="btn btn--dark" href="#booking">Book a chair</a></div>
 
 <script>
-  // the free times for the day picked, and the summary beside the form
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var SERVICES = [
+    { id: 'cut', name: 'Haircut', min: 40, price: 28 },
+    { id: 'combo', name: 'Haircut and beard', min: 60, price: 42 },
+    { id: 'beard', name: 'Beard trim', min: 20, price: 18 },
+    { id: 'shave', name: 'Hot-towel shave', min: 30, price: 30 },
+    { id: 'kids', name: 'Kids’ cut', min: 30, price: 20 }
+  ];
+  var OPEN = 10 * 60, CLOSE = 19 * 60, STEP = 30;
+  var isOpenDay = function (d) { return d.getDay() >= 2 && d.getDay() <= 6; };
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  var hm = function (m) { return pad(Math.floor(m / 60)) + ':' + pad(m % 60); };
+  var key = function (d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+  // Demo availability: the same day always shows the same taken slots.
+  function taken(d, m) { var x = (d.getDate() * 31 + d.getMonth() * 7 + m / STEP * 13) % 11; return x < 4; }
+  function slotsFor(d, svc) {
+    var now = new Date(), out = [];
+    var need = Math.ceil(svc.min / STEP);
+    for (var m = OPEN; m + svc.min <= CLOSE; m += STEP) {
+      var past = key(d) === key(now) && m <= now.getHours() * 60 + now.getMinutes() + 30;
+      var busy = false;
+      for (var i = 0; i < need; i++) if (taken(d, m + i * STEP)) busy = true;
+      out.push({ m: m, free: !past && !busy });
+    }
+    return out;
+  }
+
+  var state = { svc: SERVICES[0], day: null, time: null };
+
+  // service options
+  var svcBox = $('#svcOpts');
+  SERVICES.forEach(function (s, i) {
+    var l = document.createElement('label'); l.className = 'opt';
+    var inp = document.createElement('input'); inp.type = 'radio'; inp.name = 'service'; inp.value = s.id; inp.checked = i === 0;
+    var sp = document.createElement('span'), b = document.createElement('b'), sm = document.createElement('small');
+    b.textContent = s.name; sm.textContent = s.min + ' min · €' + s.price; sp.append(b, sm); l.append(inp, sp); svcBox.append(l);
+    inp.addEventListener('change', function () { state.svc = s; drawTimes(); summary(); });
+  });
+
+  // days: the next 14 calendar days
+  var dayBox = $('#days'), today = new Date(); today.setHours(12, 0, 0, 0);
+  for (var i = 0; i < 14; i++) {
+    var d = new Date(today); d.setDate(today.getDate() + i);
+    (function (d) {
+      var l = document.createElement('label'); l.className = 'opt';
+      var inp = document.createElement('input'); inp.type = 'radio'; inp.name = 'day'; inp.value = key(d);
+      inp.disabled = !isOpenDay(d) || !slotsFor(d, SERVICES[2]).some(function (s) { return s.free; });
+      var sp = document.createElement('span'), sm = document.createElement('small'), b = document.createElement('b'), sm2 = document.createElement('small');
+      sm.textContent = i === 0 ? 'Today' : d.toLocaleDateString('en-GB', { weekday: 'short' });
+      b.textContent = d.getDate(); sm2.textContent = d.toLocaleDateString('en-GB', { month: 'short' });
+      inp.setAttribute('aria-label', d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + (inp.disabled ? ', closed or full' : ''));
+      sp.append(sm, b, sm2); l.append(inp, sp); dayBox.append(l);
+      inp.addEventListener('change', function () { state.day = d; state.time = null; drawTimes(); summary(); });
+    })(d);
+  }
+
+  var timeBox = $('#times'), hint = $('#timeHint');
+  function drawTimes() {
+    timeBox.replaceChildren(); state.time = state.time && state.day ? state.time : null;
+    if (!state.day) { hint.textContent = 'Pick a day to see the free times.'; return; }
+    var list = slotsFor(state.day, state.svc), free = 0;
+    list.forEach(function (s) {
+      var l = document.createElement('label'); l.className = 'opt';
+      var inp = document.createElement('input'); inp.type = 'radio'; inp.name = 'time'; inp.value = hm(s.m); inp.disabled = !s.free;
+      inp.checked = state.time === s.m && s.free; if (s.free) free++;
+      inp.setAttribute('aria-label', hm(s.m) + (s.free ? ', free' : ', taken'));
+      var sp = document.createElement('span'); sp.textContent = hm(s.m); l.append(inp, sp); timeBox.append(l);
+      inp.addEventListener('change', function () { state.time = s.m; summary(); });
+    });
+    if (state.time !== null && !list.some(function (s) { return s.m === state.time && s.free; })) state.time = null;
+    hint.textContent = free ? free + ' free times for a ' + state.svc.min + '-minute ' + state.svc.name.toLowerCase() + '. Crossed-out times are taken.' : 'No free time left that day for this service. Pick another day.';
+  }
+
+  function summary() {
+    $('#s-svc').textContent = state.svc.name; $('#s-dur').textContent = state.svc.min + ' minutes'; $('#s-price').textContent = '€' + state.svc.price;
+    $('#s-day').textContent = state.day ? state.day.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) : 'Not picked yet';
+    $('#s-time').textContent = state.time !== null ? hm(state.time) + ' – ' + hm(state.time + state.svc.min) : 'Not picked yet';
+  }
+
+  function pick(dayKey, minute, svcId) {
+    if (svcId) { var si = document.querySelector('input[name=service][value="' + svcId + '"]'); if (si) { si.checked = true; state.svc = SERVICES.filter(function (s) { return s.id === svcId; })[0]; } }
+    if (dayKey) { var di = document.querySelector('input[name=day][value="' + dayKey + '"]'); if (di && !di.disabled) { di.checked = true; state.day = new Date(dayKey + 'T12:00:00'); } }
+    if (minute !== undefined) state.time = minute;
+    drawTimes(); summary();
+  }
+
+  // "next free chair" card in the hero
   (function () {
-    var service = document.getElementById('f-service'), date = document.getElementById('f-date'), slots = document.getElementById('slots');
-    var put = function (id, v) { document.getElementById(id).textContent = v; };
-    var iso = function (d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
-    date.min = iso(new Date());
-    function note(t) { slots.replaceChildren(); var p = document.createElement('p'); p.className = 'slots__note'; p.textContent = t; slots.append(p); }
-    function render() {
-      put('s-time', 'Not picked yet');
-      if (!date.value) { put('s-day', 'Not picked yet'); return note('Pick a day to see the free times.'); }
-      var d = new Date(date.value + 'T12:00:00');
-      put('s-day', d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }));
-      if (d.getDay() === 0 || d.getDay() === 1) return note('The shop is closed on Sunday and Monday. Pick another day.');
-      slots.replaceChildren();
-      for (var i = 0; i < 18; i++) {
-        var m = 600 + i * 30, t = String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
-        var l = document.createElement('label'); l.className = 'slot';
-        var input = document.createElement('input'); input.type = 'radio'; input.name = 'time'; input.value = t; input.required = true;
-        input.disabled = (d.getDate() * 3 + i * 7) % 5 === 0;
-        input.setAttribute('aria-label', t + (input.disabled ? ', taken' : ', free'));
-        var s = document.createElement('span'); s.textContent = t;
-        l.append(input, s); slots.append(l);
+    for (var i = 0; i < 14; i++) {
+      var d = new Date(today); d.setDate(today.getDate() + i);
+      if (!isOpenDay(d)) continue;
+      var s = slotsFor(d, SERVICES[0]).filter(function (x) { return x.free; })[0];
+      if (s) {
+        var when = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-GB', { weekday: 'long' });
+        $('#nc-when').textContent = when + ', ' + hm(s.m);
+        $('#nextchair').addEventListener('click', function () { pick(key(d), s.m, 'cut'); });
+        return;
       }
     }
-    service.addEventListener('change', function () {
-      var o = service.selectedOptions[0];
-      put('s-service', o.textContent); put('s-min', o.dataset.min + ' minutes'); put('s-price', '€' + o.dataset.price);
-    });
-    date.addEventListener('change', render);
-    slots.addEventListener('change', function (e) { if (e.target.name === 'time') put('s-time', e.target.value); });
+    $('#nc-when').textContent = 'See the calendar';
   })();
+
+  document.querySelectorAll('[data-pick]').forEach(function (a) { a.addEventListener('click', function () { pick(null, undefined, a.dataset.pick); }); });
+
+  // submit
+  var form = $('#book');
+  function err(id, t) { $('#e-' + id).textContent = t || ''; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = $('#f-name').value.trim(), email = $('#f-email').value.trim(), ok = true;
+    err('name', name ? '' : 'Write the name to hold the chair under.'); if (!name) ok = false;
+    var good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    err('email', good ? '' : 'Write an email like name@example.com, so we can confirm.'); if (!good) ok = false;
+    if (!state.day || state.time === null) { err('form', 'Pick a day and a free time first.'); ok = false; } else err('form', '');
+    if (!ok) { var f = form.querySelector('.err:not(:empty)'); if (f) (f.previousElementSibling || f).focus && (f.previousElementSibling || f).focus(); return; }
+    $('#doneText').textContent = name + ', a ' + state.svc.name.toLowerCase() + ' on ' + state.day.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + ' at ' + hm(state.time) + ' is held for you. We will confirm at ' + email + ' within the day. €' + state.svc.price + ' to pay at the shop.';
+    form.classList.add('sent'); $('#done').focus();
+  });
+  $('#again').addEventListener('click', function () { form.classList.remove('sent'); form.reset(); state = { svc: SERVICES[0], day: null, time: null }; drawTimes(); summary(); });
+
+  // opening hours: today and open-now
+  (function () {
+    var n = new Date(), d = n.getDay(), m = n.getHours() * 60 + n.getMinutes();
+    var row = document.querySelector('#hours tr[data-d="' + (d === 1 ? 0 : d) + '"]'); if (row) row.classList.add('today');
+    var on = isOpenDay(n) && m >= OPEN && m < CLOSE, el = $('#openNow');
+    el.classList.toggle('on', on); el.lastElementChild.textContent = on ? 'Open now, until 19:00' : 'Closed now';
+  })();
+
+  summary();
+
+  // header border, reveal on scroll, mobile bar
+  var top = $('#top'), bar = $('#mbar'), booking = $('#booking');
+  addEventListener('scroll', function () { top.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    new IntersectionObserver(function (es) { bar.classList.toggle('hide', es[0].isIntersecting); }).observe(booking);
+  } else document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+})();
 </script>
-<script type="module" src="assets/system.js"></script>
-<script type="module" src="assets/motion/motion.js"></script>
-<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>
